@@ -1,0 +1,72 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-marinho: #08204d;
+  --color-marinho-claro: #0d3372;
+  --color-turquesa: #15c4d2;
+  --color-turquesa-escuro: #0e93a0;
+  --color-esmeralda: #19b789;
+  --color-tinta: #2d2d2d;
+  --color-nevoa: #eaf2f5;
+
+  --font-display: 'Sora', sans-serif;
+  --font-sans: 'Hanken Grotesk', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 4.5rem;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-tinta);
+}
+
+::selection {
+  background: var(--color-turquesa);
+  color: var(--color-marinho);
+}
+
+/* reveal no scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visivel {
+  opacity: 1;
+  transform: none;
+}
+
+/* entrada do hero */
+@keyframes sobe {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.entra {
+  animation: sobe 0.8s ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal,
+  .reveal.visivel {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .entra {
+    animation: none;
+  }
+}
