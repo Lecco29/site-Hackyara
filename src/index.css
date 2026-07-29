@@ -1,31 +1,136 @@
 @import 'tailwindcss';
 
+/* paleta UTFPR: marinho #1B3A5C, água #2E9CCA, verde vivo #3FA34D,
+   verde escuro #1F4D3A, cinza texto #3A3A3A, verde névoa #EAF1EC */
 @theme {
-  --color-marinho: #08204d;
-  --color-marinho-claro: #0d3372;
-  --color-turquesa: #15c4d2;
-  --color-turquesa-escuro: #0e93a0;
-  --color-esmeralda: #19b789;
-  --color-tinta: #2d2d2d;
-  --color-nevoa: #eaf2f5;
+  --color-marinho: #1b3a5c;
+  --color-marinho-claro: #27527e;
+  --color-turquesa: #2e9cca;
+  --color-turquesa-escuro: #1d6a8e;
+  --color-esmeralda: #3fa34d;
+  --color-esmeralda-escuro: #1f4d3a;
+  --color-amarelo: #ffcd00;
+  --color-amarelo-escuro: #8a6d00;
+  --color-tinta: #3a3a3a;
+  --color-papel: #fafaf7;
+  --color-nevoa: #eaf1ec;
 
-  --font-display: 'Sora', sans-serif;
-  --font-sans: 'Hanken Grotesk', sans-serif;
+  --font-mono: 'Space Mono', 'Courier New', monospace;
+  --font-sans: 'Inter', sans-serif;
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 4.5rem;
+  scroll-padding-top: 5rem;
 }
 
 body {
-  font-family: var(--font-sans);
+  font-family: var(--font-mono);
   color: var(--color-tinta);
+  background: var(--color-papel);
 }
 
 ::selection {
   background: var(--color-turquesa);
   color: var(--color-marinho);
+}
+
+/* papel milimetrado, a base visual do site */
+.papel-grade {
+  background-image:
+    linear-gradient(to right, rgba(27, 58, 92, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(27, 58, 92, 0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+  /* a grade fica presa ao viewport em vez de cada seção ter sua própria origem:
+     as faixas passam a se alinhar entre si e o quadriculado não se mexe no scroll */
+  background-attachment: fixed;
+  background-position: 0 0;
+}
+
+/* no touch o attachment fixed é caro e inconsistente, então a grade volta
+   a acompanhar a seção */
+@media (hover: none) {
+  .papel-grade {
+    background-attachment: scroll;
+  }
+}
+
+/* manchas de cor nos cantos, como as grades tintadas do papel técnico */
+.mancha-turquesa {
+  background: radial-gradient(480px 360px at 100% 0%, rgba(46, 156, 202, 0.13), transparent 70%);
+}
+
+.mancha-esmeralda {
+  background: radial-gradient(480px 360px at 0% 100%, rgba(63, 163, 77, 0.12), transparent 70%);
+}
+
+.mancha-amarela {
+  background: radial-gradient(420px 320px at 0% 0%, rgba(255, 205, 0, 0.14), transparent 70%);
+}
+
+/* moldura de foto estilo polaroid técnica */
+.foto-moldura {
+  border: 6px solid #fff;
+  box-shadow: 0 12px 32px rgba(8, 32, 77, 0.18);
+}
+
+/* flutuação suave dos elementos decorativos */
+@keyframes flutua {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.flutua {
+  animation: flutua 5s ease-in-out infinite;
+}
+
+.flutua-lento {
+  animation: flutua 7s ease-in-out infinite;
+}
+
+/* letreiro que desliza */
+@keyframes desliza {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* o período dobrou (dois grupos em vez de um), então a duração dobra junto
+   pra manter a mesma velocidade percebida */
+.letreiro {
+  animation: desliza 56s linear infinite;
+}
+
+/* a foto entra de fora do quadro, inclinada, e assenta no topo da pilha:
+   a ideia é parecer que alguém pegou a foto e colocou ali */
+@keyframes assenta {
+  0% {
+    transform: translate(46%, -58%) rotate(-13deg) scale(1.14);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  72% {
+    transform: translate(0, 2%) rotate(1.2deg) scale(0.985);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0, 0) rotate(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.assenta {
+  animation: assenta 0.95s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* reveal no scroll */
@@ -40,33 +145,20 @@ body {
   transform: none;
 }
 
-/* entrada do hero */
-@keyframes sobe {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-.entra {
-  animation: sobe 0.8s ease both;
-}
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  .flutua,
+  .flutua-lento,
+  .letreiro,
+  .assenta {
+    animation: none;
   }
   .reveal,
   .reveal.visivel {
     opacity: 1;
     transform: none;
     transition: none;
-  }
-  .entra {
-    animation: none;
   }
 }

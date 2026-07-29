@@ -5,22 +5,23 @@ export default function Navbar() {
   const [aberto, setAberto] = useState(false)
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-marinho/10 bg-white/85 backdrop-blur-md">
-      <nav className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4 sm:px-6">
-        <a href="#topo" className="flex items-center" onClick={() => setAberto(false)}>
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-marinho/10 bg-papel/90 backdrop-blur-md">
+      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
+        <a href="#topo" onClick={() => setAberto(false)}>
           <img
             src="/logo-hackyara.png"
             alt="HACKYARA — Hackathon de Inovação, Santa Helena-PR, Terra das Águas"
-            className="h-8 w-auto"
+            className="h-9 w-auto"
           />
         </a>
 
-        <ul className="hidden items-center gap-7 lg:flex">
+        <ul className="hidden items-center gap-6 lg:flex">
           {NAV_ITEMS.map((item) => (
-            <li key={item.href}>
+            <li key={item.label}>
               <a
                 href={item.href}
-                className="text-sm text-marinho/80 transition-colors hover:text-turquesa-escuro"
+                {...(item.externo ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                className="text-sm font-bold uppercase tracking-wider text-tinta transition-colors hover:text-turquesa-escuro"
               >
                 {item.label}
               </a>
@@ -31,9 +32,9 @@ export default function Navbar() {
               href={LINKS.inscricao}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-md bg-turquesa px-4 py-1.5 font-display text-sm font-semibold text-marinho transition-colors hover:bg-white"
+              className="bg-amarelo px-4 py-2 text-sm font-bold text-marinho transition-colors hover:bg-turquesa"
             >
-              Inscreva-se
+              Inscreva-se →
             </a>
           </li>
         </ul>
@@ -52,14 +53,15 @@ export default function Navbar() {
       </nav>
 
       {aberto && (
-        <div className="border-t border-marinho/10 bg-white px-4 pb-6 pt-2 lg:hidden">
+        <div className="border-t border-marinho/10 bg-papel px-4 pb-6 pt-2 lg:hidden">
           <ul className="divide-y divide-marinho/5">
             {NAV_ITEMS.map((item) => (
-              <li key={item.href}>
+              <li key={item.label}>
                 <a
                   href={item.href}
+                  {...(item.externo ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                   onClick={() => setAberto(false)}
-                  className="block py-3 font-medium text-marinho"
+                  className="block py-3 font-bold uppercase tracking-wider text-marinho"
                 >
                   {item.label}
                 </a>
@@ -70,9 +72,9 @@ export default function Navbar() {
             href={LINKS.inscricao}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-4 block rounded-md bg-turquesa px-5 py-3 text-center font-display font-semibold text-marinho"
+            className="mt-4 block bg-amarelo px-5 py-3 text-center font-bold text-marinho"
           >
-            Inscreva-se
+            Inscreva-se →
           </a>
         </div>
       )}

@@ -1,13 +1,17 @@
-import Navbar from './layout/Navbar.jsx'
-import Footer from './layout/Footer.jsx'
-import Onda from './ui/Onda.jsx'
-import Hero from './sections/Hero.jsx'
-import Evento from './sections/Evento.jsx'
-import Desafio from './sections/Desafio.jsx'
-import Programacao from './sections/Programacao.jsx'
-import Premiacao from './sections/Premiacao.jsx'
-import Patrocinio from './sections/Patrocinio.jsx'
-import Faq from './sections/Faq.jsx'
+import Navbar from './components/Navbar.jsx'
+import Hero from './components/Hero.jsx'
+import Letreiro from './components/Letreiro.jsx'
+import Stats from './components/Stats.jsx'
+import CtaCards from './components/CtaCards.jsx'
+import Evento from './components/Evento.jsx'
+import Desafio from './components/Desafio.jsx'
+import Programacao from './components/Programacao.jsx'
+import Premiacao from './components/Premiacao.jsx'
+import Patrocinio from './components/Patrocinio.jsx'
+import Apoiadores from './components/Apoiadores.jsx'
+import Faq from './components/Faq.jsx'
+import ChamadaFinal from './components/ChamadaFinal.jsx'
+import Footer from './components/Footer.jsx'
 
 export default function App() {
   return (
@@ -15,14 +19,17 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
+        <Letreiro />
+        <Stats />
+        <CtaCards />
         <Evento />
         <Desafio />
         <Programacao />
-        <Onda de="#ffffff" para="#08204d" />
         <Premiacao />
-        <Onda de="#08204d" para="#ffffff" />
         <Patrocinio />
+        <Apoiadores />
         <Faq />
+        <ChamadaFinal />
       </main>
       <Footer />
     </>
