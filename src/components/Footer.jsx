@@ -13,9 +13,11 @@ const COLUNAS = [
     titulo: 'Participação',
     itens: [
       { label: 'Inscrições', href: LINKS.inscricao },
+      { label: 'Seja um demandante', href: LINKS.formDemandantes },
+      { label: 'Seja um mentor', href: LINKS.formMentores },
+      { label: 'Seja um patrocinador', href: LINKS.whatsapp1.url },
       { label: 'Regulamento', href: LINKS.regulamento },
       { label: 'Dúvidas frequentes', href: '#faq' },
-      { label: 'Proposta de patrocínio', href: `mailto:${LINKS.email}` },
     ],
   },
   {

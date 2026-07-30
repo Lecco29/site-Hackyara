@@ -96,7 +96,7 @@ export default function Desafio() {
               </p>
             </div>
             <div className="shrink-0">
-              <Botao href={LINKS.formDesafios} externo>
+              <Botao href={LINKS.formDemandantes} externo>
                 Enviar meu desafio
               </Botao>
             </div>

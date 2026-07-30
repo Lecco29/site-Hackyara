@@ -75,8 +75,8 @@ export default function Hero() {
             empresas da região, revelados na largada. Equipes, mentores e
             ecossistema de inovação, todo mundo construindo junto.
           </p>
-          <div className="mt-8 flex flex-wrap items-center gap-4">
-            <Botao href={LINKS.inscricao} externo>
+          <div className="mt-8 flex flex-wrap items-center gap-5">
+            <Botao href={LINKS.inscricao} externo grande>
               Inscreva sua equipe
             </Botao>
             <a href="#desafio" className="font-bold text-marinho underline decoration-turquesa decoration-2 underline-offset-8 hover:text-turquesa-escuro">
